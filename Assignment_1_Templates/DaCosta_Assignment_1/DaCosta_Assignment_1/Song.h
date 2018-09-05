@@ -47,6 +47,7 @@ public:
 
 	friend ostream & operator << (ostream&, const Song&);
 
+
 private:
 	string	title = "",
 			artist = "";
@@ -54,3 +55,10 @@ private:
 
 };
 
+/*
+ostream & operator << (ostream & out, const Song & second)
+{
+	out << second.getTitle() << " by " << second.getArtist();
+	return out;
+}
+*/

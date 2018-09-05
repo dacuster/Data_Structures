@@ -35,11 +35,13 @@ Song::Song(string _artist, string _title)
 	title  = _title;    
 }
 
-inline ostream & operator << (ostream & out, const Song & second)
+
+inline ostream& operator<< (ostream& out, const Song& second)
 {
-	out << second.getTitle() << " by " << second.getArtist();
+	out << second.getTitle() << second.getArtist();
 	return out;
 }
+
 
 
 bool Song::operator< (const Song & second) const

@@ -1,13 +1,11 @@
 ﻿  Sort.cpp
-c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(37): warning C4018: '<': signed/unsigned mismatch
-  c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(59): note: see reference to function template instantiation 'const Comparable &sort<int>(std::vector<int,std::allocator<_Ty>> &)' being compiled
+e:\files\repositories\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(35): warning C4018: '<': signed/unsigned mismatch
+  e:\files\repositories\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(71): note: see reference to function template instantiation 'const Comparable &sort<int>(std::vector<int,std::allocator<_Ty>> &)' being compiled
           with
           [
               Comparable=int,
               _Ty=int
           ]
-c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(39): warning C4018: '<': signed/unsigned mismatch
-  Song.cpp
-  Generating Code...
-Sort.obj : error LNK2019: unresolved external symbol "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Song const &)" (??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABVSong@@@Z) referenced in function _main
-C:\Users\dacus\Documents\Repos\DataStructures\Assignment_1_Templates\DaCosta_Assignment_1\Debug\DaCosta_Assignment_1.exe : fatal error LNK1120: 1 unresolved externals
+e:\files\repositories\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(37): warning C4018: '<': signed/unsigned mismatch
+Sort.obj : error LNK2019: unresolved external symbol "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Song const &)" (??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABVSong@@@Z) referenced in function "class Song const & __cdecl print<class Song>(class std::vector<class Song,class std::allocator<class Song> > &)" (??$print@VSong@@@@YAABVSong@@AAV?$vector@VSong@@V?$allocator@VSong@@@std@@@std@@@Z)
+E:\Files\Repositories\datastructures\Assignment_1_Templates\DaCosta_Assignment_1\Debug\DaCosta_Assignment_1.exe : fatal error LNK1120: 1 unresolved externals

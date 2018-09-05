@@ -27,28 +27,37 @@
 using std::cout;
 using std::cin;
 using std::vector;
-using std::swap;
+using std::iter_swap;
 
 template <typename Comparable>
 const Comparable & sort(vector<Comparable> & a)
 {
-	Comparable temp;
-
 	for (int i = 0; i < a.size() - 1; i++)
 	{
-		for (int j = 1; j < a.size(); j++)
+		for (int j = i + 1; j < a.size(); j++)
 		{
 			if (a[j] < a[i])
 			{
-				temp = a[j];
-				a[j] = a[i];
-				a[i] = temp;
+				iter_swap(&a[j], &a[i]);
 			}
 		}
 	}
-
-	return a[a.size() - 1];
+	
+	return a[(a.size() - 1)];
 }
+
+
+template <typename Printable>
+const Printable & print(vector<Printable> & vec)
+{
+	for (typename vector<Printable>::iterator it = vec.begin(); it != vec.end(); ++it)
+	{
+		cout << *it;
+	}
+
+	return vec[0];
+}
+
 
 int main()
 {
@@ -56,23 +65,17 @@ int main()
 	vector<int> intVec = { 1, 5, 3, 4, 2                                      };   
 
 
-	cout << sort(intVec) << endl; 
-	cout << sort(songs)  << endl;  
+	//cout << sort(intVec) << endl; 
+	//cout << sort(songs)  << endl; 
+
+	sort(intVec);
+	sort(songs);
+
+	print(intVec);
+	print(songs);
 
 
 
 	string temp; 
 	cin >> temp; 
-}
-
-template < class T >
-std::ostream& operator << (std::ostream& os, const std::vector<T>& v)
-{
-	os << "[";
-	for (typename std::vector<T>::const_iterator ii = v.begin(); ii != v.end(); ++ii)
-	{
-		os << " " << *ii;
-	}
-	os << "]";
-	return os;
 }
