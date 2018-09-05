@@ -20,6 +20,7 @@
 
 #pragma once
 #include <iostream>
+#include <string>
 
 using std::string;
 using std::cout;
@@ -29,8 +30,6 @@ using std::endl;
 class Song
 {
 public:
-	Song(){}
-
 	Song(string _artist, string _title);
 
 	string getArtist() const
@@ -44,21 +43,9 @@ public:
 	}
 
 	bool operator< (const Song & second) const;
-
-	friend ostream & operator << (ostream&, const Song&);
-
+	friend ostream & operator<< (ostream&, const Song&);
 
 private:
 	string	title = "",
 			artist = "";
-
-
 };
-
-/*
-ostream & operator << (ostream & out, const Song & second)
-{
-	out << second.getTitle() << " by " << second.getArtist();
-	return out;
-}
-*/

@@ -18,8 +18,6 @@
 *future plagiarism checking).
 */
 
-#include <iostream>
-#include <string>
 #include <vector>
 #include "Song.h"
 
@@ -36,14 +34,6 @@ Song::Song(string _artist, string _title)
 }
 
 
-inline ostream& operator<< (ostream& out, const Song& second)
-{
-	out << second.getTitle() << second.getArtist();
-	return out;
-}
-
-
-
 bool Song::operator< (const Song & second) const
 {
 	if (!getArtist().compare(second.getArtist()))
@@ -52,74 +42,10 @@ bool Song::operator< (const Song & second) const
 	}
 	
 	return getTitle() < second.getTitle();
-	//string artistOne = getArtist();
-	//string artistTwo = second.getArtist();
+}
 
-	///*
-	//	Check if the artists are the same or not.
-	//*/
-	//if (!artistOne.compare(artistTwo))
-	//{
-	//	/*
-	//		Get the size of the smaller artist string name.
-	//	*/
-	//	int stringSize = artistOne.length() < artistTwo.length() ? artistOne.length() : artistTwo.length();
-
-	//	/*
-	//		Loop through each character of both strings and check the ASCII value of both
-	//		as lowercase characters.
-	//	*/
-	//	for (int counter = 0; counter < stringSize; counter++)
-	//	{
-	//		if (int(tolower(artistOne[counter])) < int(tolower(artistTwo[counter])))
-	//		{
-	//			return true;
-	//		}
-	//		else if (int(tolower(artistOne[counter])) > int(tolower(artistTwo[counter])))
-	//		{
-	//			return false;
-	//		}
-	//	}
-
-	//	/*
-	//		The artist names are similar but with added words or character
-	//		after a certain point so the artist with the smaller name is first.
-	//	*/
-	//	return artistOne.length() < artistTwo.length() ? true : false;
-	//}
-	///*
-	//	It's the same artist, compare song names.
-	//*/
-	//else
-	//{
-	//	string titleOne = getTitle();
-	//	string titleTwo = second.getTitle();
-
-	//	/*
-	//		Get the size of the smaller song title string.
-	//	*/
-	//	int stringSize = titleOne.length() < titleTwo.length() ? titleOne.length() : titleTwo.length();
-
-	//	/*
-	//		Loop through each character of both strings and check the ASCII value of both
-	//		as lowercase characters.
-	//	*/
-	//	for (int counter = 0; counter < stringSize; counter++)
-	//	{
-	//		if (int(tolower(titleOne[counter])) < int(tolower(titleTwo[counter])))
-	//		{
-	//			return true;
-	//		}
-	//		else if (int(tolower(titleOne[counter])) > int(tolower(titleTwo[counter])))
-	//		{
-	//			return false;
-	//		}
-	//	}
-
-	//	/*
-	//		The song titles are similar but with added words or character
-	//		after a certain point so the title with the smaller name is first.
-	//	*/
-	//	return titleOne.length() < titleTwo.length() ? true : false;
-	//}
+ostream& operator << (ostream & out, const Song & second)
+{
+	out << second.getTitle() << " by " << second.getArtist();
+	return out;
 }

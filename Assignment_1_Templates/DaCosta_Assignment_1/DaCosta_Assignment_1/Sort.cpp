@@ -18,10 +18,10 @@
 *future plagiarism checking).
 */
 
-#include <iostream>
-#include <string>
 #include <vector>
 #include "Song.h"
+#include <algorithm>
+#include <iterator>
 //using namespace std;
 
 using std::cout;
@@ -29,44 +29,41 @@ using std::cin;
 using std::vector;
 using std::iter_swap;
 
-template <typename Comparable>
-const Comparable & sort(vector<Comparable> & a)
+
+template <typename Sortable>
+void sort(vector<Sortable> & _sortVector)
 {
-	for (int i = 0; i < a.size() - 1; i++)
+	for (int counterOne = 0; counterOne < _sortVector.size() - 1; counterOne++)
 	{
-		for (int j = i + 1; j < a.size(); j++)
+		for (int counterTwo = counterOne + 1; counterTwo < _sortVector.size(); counterTwo++)
 		{
-			if (a[j] < a[i])
+			if (_sortVector[counterTwo] < _sortVector[counterOne])
 			{
-				iter_swap(&a[j], &a[i]);
+				iter_swap(&_sortVector[counterTwo], &_sortVector[counterOne]);
 			}
 		}
 	}
-	
-	return a[(a.size() - 1)];
 }
 
 
 template <typename Printable>
-const Printable & print(vector<Printable> & vec)
+void print(vector<Printable> &_printVector)
 {
-	for (typename vector<Printable>::iterator it = vec.begin(); it != vec.end(); ++it)
+	typename vector<Printable>::const_iterator _printIterator;
+
+	for (_printIterator = _printVector.begin(); _printIterator != _printVector.end(); ++_printIterator)
 	{
-		cout << *it;
+		cout << *_printIterator << endl;
 	}
 
-	return vec[0];
+	cout << endl;
 }
 
 
 int main()
 {
-	vector<Song> songs = { Song("artist", "title"), Song("artist2", "title2") }; 
-	vector<int> intVec = { 1, 5, 3, 4, 2                                      };   
-
-
-	//cout << sort(intVec) << endl; 
-	//cout << sort(songs)  << endl; 
+	vector<Song> songs = { Song("Starset", "My Demons"), Song("Avenged Sevenfold", "Unholy Confessions"), Song("Metallica", "Enter Sandman"), Song("Avenged Sevenfold", "The Stage"), Song("Metallica", "King Nothing") }; 
+	vector<int> intVec = { 1, 5, 3, 4, 2                                      };    
 
 	sort(intVec);
 	sort(songs);
@@ -74,8 +71,8 @@ int main()
 	print(intVec);
 	print(songs);
 
+	string temp;
+	cin >> temp;
 
-
-	string temp; 
-	cin >> temp; 
+	return 0;
 }
