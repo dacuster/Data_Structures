@@ -22,33 +22,57 @@
 #include <string>
 #include <vector>
 #include "Song.h"
-using namespace std;
+//using namespace std;
+
+using std::cout;
+using std::cin;
+using std::vector;
+using std::swap;
 
 template <typename Comparable>
-const Comparable & sort(const vector<Comparable> & a)
+const Comparable & sort(vector<Comparable> & a)
 {
-	int maxIndex = 0;
+	Comparable temp;
 
-	for (int i = 1; i < a.size(); i++)
+	for (int i = 0; i < a.size() - 1; i++)
 	{
-		if (a[maxIndex] < a[i])
-			maxIndex = i;
+		for (int j = 1; j < a.size(); j++)
+		{
+			if (a[j] < a[i])
+			{
+				temp = a[j];
+				a[j] = a[i];
+				a[i] = temp;
+			}
+		}
 	}
-	return a[maxIndex];
+
+	return a[a.size() - 1];
 }
 
 int main()
 {
 	vector<Song> songs = { Song("artist", "title"), Song("artist2", "title2") }; 
-	vector<int> intVec = { 1, 5, 3, 4, 2                                      };  
+	vector<int> intVec = { 1, 5, 3, 4, 2                                      };   
 
 
-	 
-	cout << sort(intVec) << endl;
-	cout << sort(songs) << endl;
+	cout << sort(intVec) << endl; 
+	cout << sort(songs)  << endl;  
 
 
 
-	string temp;
-	cin >> temp;
+	string temp; 
+	cin >> temp; 
+}
+
+template < class T >
+std::ostream& operator << (std::ostream& os, const std::vector<T>& v)
+{
+	os << "[";
+	for (typename std::vector<T>::const_iterator ii = v.begin(); ii != v.end(); ++ii)
+	{
+		os << " " << *ii;
+	}
+	os << "]";
+	return os;
 }

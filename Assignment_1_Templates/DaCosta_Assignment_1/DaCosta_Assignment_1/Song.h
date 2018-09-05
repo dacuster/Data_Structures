@@ -29,6 +29,8 @@ using std::endl;
 class Song
 {
 public:
+	Song(){}
+
 	Song(string _artist, string _title);
 
 	string getArtist() const
@@ -41,21 +43,14 @@ public:
 		return title;
 	}
 
-
-
-	void print(ostream & out = cout) const;
-
 	bool operator< (const Song & second) const;
 
+	friend ostream & operator << (ostream&, const Song&);
+
 private:
-	string	title,
-			artist;
+	string	title = "",
+			artist = "";
 
 
 };
 
-ostream & operator << (ostream & out, const Song & second)
-{
-	second.print(out);
-	return out;
-}

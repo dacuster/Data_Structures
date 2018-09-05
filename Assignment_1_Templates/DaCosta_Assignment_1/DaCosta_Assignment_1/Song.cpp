@@ -27,88 +27,97 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
+using std::ostream;
 
 Song::Song(string _artist, string _title)
 {
 	artist = _artist; 
-	title  = _title;  
+	title  = _title;    
 }
 
-void Song::print(ostream & out = cout) const
+inline ostream & operator << (ostream & out, const Song & second)
 {
-	out << getTitle() << " by " << getArtist() << endl;
+	out << second.getTitle() << " by " << second.getArtist();
+	return out;
 }
+
 
 bool Song::operator< (const Song & second) const
 {
-	string artistOne = getArtist();
-	string artistTwo = second.getArtist();
-
-	/*
-		Check if the artists are the same or not.
-	*/
-	if (!artistOne.compare(artistTwo))
+	if (!getArtist().compare(second.getArtist()))
 	{
-		/*
-			Get the size of the smaller artist string name.
-		*/
-		int stringSize = artistOne.length() < artistTwo.length() ? artistOne.length() : artistTwo.length();
-
-		/*
-			Loop through each character of both strings and check the ASCII value of both
-			as lowercase characters.
-		*/
-		for (int counter = 0; counter < stringSize; counter++)
-		{
-			if (int(tolower(artistOne[counter])) < int(tolower(artistTwo[counter])))
-			{
-				return true;
-			}
-			else if (int(tolower(artistOne[counter])) > int(tolower(artistTwo[counter])))
-			{
-				return false;
-			}
-		}
-
-		/*
-			The artist names are similar but with added words or character
-			after a certain point so the artist with the smaller name is first.
-		*/
-		return artistOne.length() < artistTwo.length() ? true : false;
+		return getArtist() < second.getArtist();
 	}
-	/*
-		It's the same artist, compare song names.
-	*/
-	else
-	{
-		string titleOne = getTitle();
-		string titleTwo = second.getTitle();
+	
+	return getTitle() < second.getTitle();
+	//string artistOne = getArtist();
+	//string artistTwo = second.getArtist();
 
-		/*
-			Get the size of the smaller song title string.
-		*/
-		int stringSize = titleOne.length() < titleTwo.length() ? titleOne.length() : titleTwo.length();
+	///*
+	//	Check if the artists are the same or not.
+	//*/
+	//if (!artistOne.compare(artistTwo))
+	//{
+	//	/*
+	//		Get the size of the smaller artist string name.
+	//	*/
+	//	int stringSize = artistOne.length() < artistTwo.length() ? artistOne.length() : artistTwo.length();
 
-		/*
-			Loop through each character of both strings and check the ASCII value of both
-			as lowercase characters.
-		*/
-		for (int counter = 0; counter < stringSize; counter++)
-		{
-			if (int(tolower(titleOne[counter])) < int(tolower(titleTwo[counter])))
-			{
-				return true;
-			}
-			else if (int(tolower(titleOne[counter])) > int(tolower(titleTwo[counter])))
-			{
-				return false;
-			}
-		}
+	//	/*
+	//		Loop through each character of both strings and check the ASCII value of both
+	//		as lowercase characters.
+	//	*/
+	//	for (int counter = 0; counter < stringSize; counter++)
+	//	{
+	//		if (int(tolower(artistOne[counter])) < int(tolower(artistTwo[counter])))
+	//		{
+	//			return true;
+	//		}
+	//		else if (int(tolower(artistOne[counter])) > int(tolower(artistTwo[counter])))
+	//		{
+	//			return false;
+	//		}
+	//	}
 
-		/*
-			The song titles are similar but with added words or character
-			after a certain point so the title with the smaller name is first.
-		*/
-		return titleOne.length() < titleTwo.length() ? true : false;
-	}
+	//	/*
+	//		The artist names are similar but with added words or character
+	//		after a certain point so the artist with the smaller name is first.
+	//	*/
+	//	return artistOne.length() < artistTwo.length() ? true : false;
+	//}
+	///*
+	//	It's the same artist, compare song names.
+	//*/
+	//else
+	//{
+	//	string titleOne = getTitle();
+	//	string titleTwo = second.getTitle();
+
+	//	/*
+	//		Get the size of the smaller song title string.
+	//	*/
+	//	int stringSize = titleOne.length() < titleTwo.length() ? titleOne.length() : titleTwo.length();
+
+	//	/*
+	//		Loop through each character of both strings and check the ASCII value of both
+	//		as lowercase characters.
+	//	*/
+	//	for (int counter = 0; counter < stringSize; counter++)
+	//	{
+	//		if (int(tolower(titleOne[counter])) < int(tolower(titleTwo[counter])))
+	//		{
+	//			return true;
+	//		}
+	//		else if (int(tolower(titleOne[counter])) > int(tolower(titleTwo[counter])))
+	//		{
+	//			return false;
+	//		}
+	//	}
+
+	//	/*
+	//		The song titles are similar but with added words or character
+	//		after a certain point so the title with the smaller name is first.
+	//	*/
+	//	return titleOne.length() < titleTwo.length() ? true : false;
+	//}
 }

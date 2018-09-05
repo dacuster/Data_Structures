@@ -1,5 +1,13 @@
-﻿  Song.cpp
-c:\users\dacus\google drive\champlain\year_2_sem_1\data structures and algoithms csi_281_03\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\song.cpp(17): error C2572: 'Song::print': redefinition of default argument: parameter 1
-  c:\users\dacus\google drive\champlain\year_2_sem_1\data structures and algoithms csi_281_03\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\song.h(26): note: see declaration of 'Song::print'
-c:\users\dacus\google drive\champlain\year_2_sem_1\data structures and algoithms csi_281_03\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\song.cpp(28): error C2084: function 'std::ostream &operator <<(std::ostream &,const Song &)' already has a body
-  c:\users\dacus\google drive\champlain\year_2_sem_1\data structures and algoithms csi_281_03\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\song.h(37): note: see previous definition of '<<'
+﻿  Sort.cpp
+c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(37): warning C4018: '<': signed/unsigned mismatch
+  c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(59): note: see reference to function template instantiation 'const Comparable &sort<int>(std::vector<int,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              Comparable=int,
+              _Ty=int
+          ]
+c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(39): warning C4018: '<': signed/unsigned mismatch
+  Song.cpp
+  Generating Code...
+Sort.obj : error LNK2019: unresolved external symbol "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Song const &)" (??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABVSong@@@Z) referenced in function _main
+C:\Users\dacus\Documents\Repos\DataStructures\Assignment_1_Templates\DaCosta_Assignment_1\Debug\DaCosta_Assignment_1.exe : fatal error LNK1120: 1 unresolved externals
