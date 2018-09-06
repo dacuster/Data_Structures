@@ -19,14 +19,23 @@
 */
 
 #pragma once
+
+//------------------------------------------------------------------------------------
+//	Include necessary libraries.
+//------------------------------------------------------------------------------------
 #include <iostream>
 #include <string>
 
+//------------------------------------------------------------------------------------
+//	Include necessary namespace members.
+//------------------------------------------------------------------------------------
 using std::string;
-using std::cout;
 using std::ostream;
-using std::endl;
 
+//------------------------------------------------------------------------------------
+//	NAME:			Song Class
+//	DESCRIPTION:	Class comprised of an artist and song title.
+//------------------------------------------------------------------------------------
 class Song
 {
 public:
@@ -42,8 +51,8 @@ public:
 		return title;
 	}
 
-	bool operator< (const Song & second) const;
-	friend ostream & operator<< (ostream&, const Song&);
+	bool operator< (const Song & _secondSong) const;
+	friend ostream & operator<< (ostream& _outputStream, const Song& _song);
 
 private:
 	string	title = "",

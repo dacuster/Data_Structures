@@ -18,34 +18,43 @@
 *future plagiarism checking).
 */
 
-#include <vector>
+//------------------------------------------------------------------------------------
+//	Include necessary libraries.
+//------------------------------------------------------------------------------------
 #include "Song.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
-using std::string;
-using std::ostream;
-
+//------------------------------------------------------------------------------------
+//	NAME:			Song Constructor
+//	DESCRIPTION:	Create a Song object with the artist and song title input
+//					parameters to the member variables.
+//------------------------------------------------------------------------------------
 Song::Song(string _artist, string _title)
 {
 	artist = _artist; 
 	title  = _title;    
 }
 
-
-bool Song::operator< (const Song & second) const
+//------------------------------------------------------------------------------------
+//	NAME:			Comparison Overload Operator (<)
+//	DESCRIPTION:	Compare song 1 artist with song 2 artist. If they're the same,
+//					compare the titles. Return True if the first value is smaller.
+//------------------------------------------------------------------------------------
+bool Song::operator< (const Song & _secondSong) const
 {
-	if (!getArtist().compare(second.getArtist()))
+	if (getArtist().compare(_secondSong.getArtist()))
 	{
-		return getArtist() < second.getArtist();
+		return getArtist() < _secondSong.getArtist();
 	}
 	
-	return getTitle() < second.getTitle();
+	return getTitle() < _secondSong.getTitle();
 }
 
-ostream& operator << (ostream & out, const Song & second)
+//------------------------------------------------------------------------------------
+//	NAME:			Stream Overload Operator (<<)
+//	DESCRIPTION:	Send the song information to the output stream.
+//------------------------------------------------------------------------------------
+ostream& operator << (ostream & _outputStream, const Song & _secondSong)
 {
-	out << second.getTitle() << " by " << second.getArtist();
-	return out;
+	_outputStream << _secondSong.getTitle() << " by " << _secondSong.getArtist();
+	return _outputStream;
 }

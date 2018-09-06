@@ -18,34 +18,47 @@
 *future plagiarism checking).
 */
 
-#include <vector>
+
+//------------------------------------------------------------------------------------
+//	Include necessary libraries.
+//------------------------------------------------------------------------------------
 #include "Song.h"
+#include <vector>
 #include <algorithm>
 #include <iterator>
-//using namespace std;
 
+//------------------------------------------------------------------------------------
+//	Include necessary namespace members.
+//------------------------------------------------------------------------------------
 using std::cout;
+using std::endl;
 using std::cin;
 using std::vector;
 using std::iter_swap;
 
-
+//------------------------------------------------------------------------------------
+//	NAME:			Sort Template Function
+//	DESCRIPTION:	Sort vectors using swap method moving larger values to the end.
+//------------------------------------------------------------------------------------
 template <typename Sortable>
 void sort(vector<Sortable> & _sortVector)
 {
 	for (int counterOne = 0; counterOne < _sortVector.size() - 1; counterOne++)
 	{
-		for (int counterTwo = counterOne + 1; counterTwo < _sortVector.size(); counterTwo++)
+		for (int counterTwo = 0; counterTwo < _sortVector.size() - counterOne - 1; counterTwo++)
 		{
-			if (_sortVector[counterTwo] < _sortVector[counterOne])
+			if (_sortVector[counterTwo + 1] < _sortVector[counterTwo])
 			{
-				iter_swap(&_sortVector[counterTwo], &_sortVector[counterOne]);
+				iter_swap(&_sortVector[counterTwo + 1], &_sortVector[counterTwo]);
 			}
 		}
 	}
 }
 
-
+//------------------------------------------------------------------------------------
+//	NAME:			Print Template Function
+//	DESCRIPTION:	Iterate through vectors and print each element.
+//------------------------------------------------------------------------------------
 template <typename Printable>
 void print(vector<Printable> &_printVector)
 {
@@ -59,18 +72,41 @@ void print(vector<Printable> &_printVector)
 	cout << endl;
 }
 
-
+//------------------------------------------------------------------------------------
+//	NAME:			Main Function
+//	DESCRIPTION:	Execute the name program.
+//------------------------------------------------------------------------------------
 int main()
 {
-	vector<Song> songs = { Song("Starset", "My Demons"), Song("Avenged Sevenfold", "Unholy Confessions"), Song("Metallica", "Enter Sandman"), Song("Avenged Sevenfold", "The Stage"), Song("Metallica", "King Nothing") }; 
-	vector<int> intVec = { 1, 5, 3, 4, 2                                      };    
+	//------------------------------------------------------------------------------------
+	//	Create vectors to sort using a template function.
+	//------------------------------------------------------------------------------------
+	vector<Song> songs = { Song("Starset", "My Demons"), Song("Avenged Sevenfold", "Unholy Confessions"), Song("Metallica", "Enter Sandman"), Song("Avenged Sevenfold", "The Stage"), Song("Metallica", "King Nothing"), Song("In This Moment", "Roots") }; 
+	vector<int> intVec = { 1, 5, 3, 4, 2}; 
 
-	sort(intVec);
-	sort(songs);
-
+	//------------------------------------------------------------------------------------
+	//	Print the values of the vectors before sorting.
+	//------------------------------------------------------------------------------------
+	cout << "Initial vectors:" << endl;
 	print(intVec);
 	print(songs);
 
+	//------------------------------------------------------------------------------------
+	//	Sort the values of the vectors.
+	//------------------------------------------------------------------------------------
+	sort(intVec);
+	sort(songs);
+
+	//------------------------------------------------------------------------------------
+	//	Print the values of the vectors after sorting.
+	//------------------------------------------------------------------------------------
+	cout << "Sorted vectors:" << endl;
+	print(intVec);
+	print(songs);
+
+	//------------------------------------------------------------------------------------
+	//	Wait for user input to hold the console.
+	//------------------------------------------------------------------------------------
 	string temp;
 	cin >> temp;
 

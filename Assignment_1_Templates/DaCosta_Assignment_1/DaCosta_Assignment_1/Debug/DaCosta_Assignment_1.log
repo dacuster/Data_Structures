@@ -1,11 +1,11 @@
-﻿  Song.cpp
-  Sort.cpp
-c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(36): warning C4018: '<': signed/unsigned mismatch
-  c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(68): note: see reference to function template instantiation 'void sort<int>(std::vector<int,std::allocator<_Ty>> &)' being compiled
+﻿  Sort.cpp
+c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(46): warning C4018: '<': signed/unsigned mismatch
+  c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(97): note: see reference to function template instantiation 'void sort<int>(std::vector<int,std::allocator<_Ty>> &)' being compiled
           with
           [
               _Ty=int
           ]
-c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(38): warning C4018: '<': signed/unsigned mismatch
+c:\users\dacus\documents\repos\datastructures\assignment_1_templates\dacosta_assignment_1\dacosta_assignment_1\sort.cpp(48): warning C4018: '<': signed/unsigned mismatch
+  Song.cpp
   Generating Code...
   DaCosta_Assignment_1.vcxproj -> C:\Users\dacus\Documents\Repos\DataStructures\Assignment_1_Templates\DaCosta_Assignment_1\Debug\DaCosta_Assignment_1.exe
