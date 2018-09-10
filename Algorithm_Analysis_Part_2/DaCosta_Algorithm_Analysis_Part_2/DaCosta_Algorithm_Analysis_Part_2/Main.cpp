@@ -6,54 +6,169 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+void printQuestionNumber(int _number, long long& _resetN);
+void printSum(long long _iteration, long long _sum);
+
 int main()
 {
-	int sum = 0;
-	int n = 1;
-	int question = 1;
-	int i = 0;
-	int j = 0;
-	int k = 0;
+	// Number of times n should be multiplied by the multiplier.
+	const int TOTAL_ITERATIONS = 3; 
+	// Multiplier for n after each iteration.
+	const int N_MULTIPLIER     = 4; 
 
-	cout << "Question " << question << ":" << endl;
+	long long sum        = 0; 
+	long long n          = 1; 
+	int question         = 1; 
+	int counter          = 0; 
 
-	for (i = 0; i < 3; i++)
+	long long i = 0; 
+	long long j = 0; 
+	long long k = 0; 
+
+	// Question 1
+	printQuestionNumber(question++, n);
+
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
 	{
-		n *= 5;
+		sum = 0;
+		n *= N_MULTIPLIER;
 
-		for (int j = 0; j < n; j++)
+		for (i = 0; i < n; i++)
 		{
 			sum++;
 		}
 
-		cout << "Sum for " << n << "iterations = " << sum << endl;
-
-		sum = 0;
+		printSum(n, sum);
 	}
 
-	n = 1;
+	// Question 2
+	printQuestionNumber(question++, n);
 
-	cout << endl << "Question" << question << ":" << endl;
-
-	for (i = 0; i < n; i++)
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
 	{
-		for (j = 0; j < n; j++)
+		sum = 0;
+		n *= N_MULTIPLIER;
+
+		for (i = 0; i < n; i++)
 		{
-			sum++;
+			for (j = 0; j < n; j++)
+			{
+				sum++;
+			}
 		}
 
-		cout << "Sum for " << (n * n) << "iterations = " << sum << endl;
-
-		sum = 0;
+		printSum(n, sum);
 	}
 
-	for (int i = 0; i < n; i++)
-	{
+	// Question 3
+	printQuestionNumber(question++, n);
 
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
+	{
+		sum = 0;
+		n *= N_MULTIPLIER;
+
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < (n * n); j++)
+			{
+				sum++;
+			}
+		}
+
+		printSum(n, sum);
+	}
+
+	// Question 4
+	printQuestionNumber(question++, n);
+
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
+	{
+		sum = 0;
+		n *= N_MULTIPLIER;
+
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < i; j++)
+			{
+				sum++;
+			}
+		}
+
+		printSum(n, sum);
+	}
+
+	// Question 5
+	printQuestionNumber(question++, n);
+
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
+	{
+		sum = 0;
+		n *= N_MULTIPLIER;
+
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < (i * i); j++)
+			{
+				for (k = 0; k < j; k++)
+				{
+					sum++;
+				}
+			}
+		}
+
+		printSum(n, sum);
+	}
+
+	// Question 6
+	printQuestionNumber(question++, n);
+
+	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
+	{
+		sum = 0;
+		n *= N_MULTIPLIER;
+
+		for (i = 1; i < n; i++)
+		{
+			for (j = 1; j < (i * i); j++)
+			{
+				if (j % i == 0)
+				{
+					for (k = 0; k < j; k++)
+					{
+						sum++;
+					}
+				}
+			}
+		}
+
+		printSum(n, sum);
 	}
 
 	string userInput;
 	cin >> userInput;
 
 	return 0;
+}
+
+/// <summary>
+/// Prints the question number and resets n.
+/// </summary>
+/// <param name="_number">The question number.</param>
+/// <param name="_resetN">The value of n.</param>
+void printQuestionNumber(int _number, long long& _resetN)
+{
+	_resetN = 1;
+
+	cout << endl << "Question " << _number << ":" << endl;
+}
+
+/// <summary>
+/// Prints the sum for the end of the iterations of n.
+/// </summary>
+/// <param name="_iteration">The value of n.</param>
+/// <param name="_sum">The sum of all iterations.</param>
+void printSum(long long _iteration, long long _sum)
+{
+	cout << "Sum for " <<_iteration << " iterations = " << _sum << endl;
 }
