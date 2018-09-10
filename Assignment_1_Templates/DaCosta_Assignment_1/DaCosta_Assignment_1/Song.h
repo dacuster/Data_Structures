@@ -32,25 +32,45 @@
 using std::string;
 using std::ostream;
 
-//------------------------------------------------------------------------------------
-//	NAME:			Song Class
-//	DESCRIPTION:	Class comprised of an artist and song title.
-//------------------------------------------------------------------------------------
+
+/// <summary>
+/// The song class.
+/// </summary>
 class Song
 {
 public:
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Song" /> class.
+	/// </summary>
+	/// <param name="_artist">The artist.</param>
+	/// <param name="_title">The title.</param>
 	Song(string _artist, string _title);
 
+	/// <summary>
+	/// Gets the artist.
+	/// </summary>
+	/// <returns></returns>
 	string getArtist() const
 	{
 		return artist;
 	}
 
+	/// <summary>
+	/// Gets the title.
+	/// </summary>
+	/// <returns></returns>
 	string getTitle() const
 	{
 		return title;
 	}
 
+
+	/// <summary>
+	/// Compares the calling song to the second song.
+	/// </summary>
+	/// <param name="_secondSong">The second song.</param>
+	/// <returns></returns>
 	bool operator< (const Song & _secondSong) const;
 	friend ostream & operator<< (ostream& _outputStream, const Song& _song);
 
