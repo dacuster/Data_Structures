@@ -40,6 +40,10 @@ using std::iter_swap;
 //	NAME:			Sort Template Function
 //	DESCRIPTION:	Sort vectors using swap method moving larger values to the end.
 //------------------------------------------------------------------------------------
+/// <summary>
+/// Sorts the specified sort vector.
+/// </summary>
+/// <param name="_sortVector">The sort vector.</param>
 template <typename Sortable>
 void sort(vector<Sortable> & _sortVector)
 {
@@ -59,6 +63,10 @@ void sort(vector<Sortable> & _sortVector)
 //	NAME:			Print Template Function
 //	DESCRIPTION:	Iterate through vectors and print each element.
 //------------------------------------------------------------------------------------
+/// <summary>
+/// Prints the specified print vector.
+/// </summary>
+/// <param name="_printVector">The print vector.</param>
 template <typename Printable>
 void print(vector<Printable> &_printVector)
 {

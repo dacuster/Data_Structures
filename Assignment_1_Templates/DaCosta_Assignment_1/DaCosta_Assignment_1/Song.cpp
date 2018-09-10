@@ -23,22 +23,24 @@
 //------------------------------------------------------------------------------------
 #include "Song.h"
 
-//------------------------------------------------------------------------------------
-//	NAME:			Song Constructor
-//	DESCRIPTION:	Create a Song object with the artist and song title input
-//					parameters to the member variables.
-//------------------------------------------------------------------------------------
+
+/// <summary>
+/// Initializes a new instance of the <see cref="Song" /> class.
+/// </summary>
+/// <param name="_artist">The artist.</param>
+/// <param name="_title">The title.</param>
 Song::Song(string _artist, string _title)
 {
 	artist = _artist; 
 	title  = _title;    
 }
 
-//------------------------------------------------------------------------------------
-//	NAME:			Comparison Overload Operator (<)
-//	DESCRIPTION:	Compare song 1 artist with song 2 artist. If they're the same,
-//					compare the titles. Return True if the first value is smaller.
-//------------------------------------------------------------------------------------
+
+/// <summary>
+/// Operators the specified second song.
+/// </summary>
+/// <param name="_secondSong">The second song.</param>
+/// <returns></returns>
 bool Song::operator< (const Song & _secondSong) const
 {
 	if (getArtist().compare(_secondSong.getArtist()))
@@ -49,10 +51,13 @@ bool Song::operator< (const Song & _secondSong) const
 	return getTitle() < _secondSong.getTitle();
 }
 
-//------------------------------------------------------------------------------------
-//	NAME:			Stream Overload Operator (<<)
-//	DESCRIPTION:	Send the song information to the output stream.
-//------------------------------------------------------------------------------------
+
+/// <summary>
+/// Operators the specified output stream.
+/// </summary>
+/// <param name="_outputStream">The output stream.</param>
+/// <param name="_secondSong">The second song.</param>
+/// <returns></returns>
 ostream& operator << (ostream & _outputStream, const Song & _secondSong)
 {
 	_outputStream << _secondSong.getTitle() << " by " << _secondSong.getArtist();
