@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ofstream;
 
 void printQuestionNumber(int _number, long long& _resetN);
 void printSum(long long _iteration, long long _sum);
@@ -14,7 +16,7 @@ int main()
 	// Number of times n should be multiplied by the multiplier.
 	const int TOTAL_ITERATIONS = 3; 
 	// Multiplier for n after each iteration.
-	const int N_MULTIPLIER     = 4; 
+	const int N_MULTIPLIER     = 5; 
 
 	long long sum        = 0; 
 	long long n          = 1; 
@@ -170,5 +172,18 @@ void printQuestionNumber(int _number, long long& _resetN)
 /// <param name="_sum">The sum of all iterations.</param>
 void printSum(long long _iteration, long long _sum)
 {
-	cout << "Sum for " <<_iteration << " iterations = " << _sum << endl;
+	// Create a file variable.
+	ofstream csvFile;
+
+	ofstream output;
+
+	cout << "Sum for " << _iteration << " iterations = " << _sum << endl;
+	
+	// Open the file and append.
+	csvFile.open("Data.csv", ofstream::app);
+
+	csvFile << _iteration << "," << _sum << endl;
+
+	csvFile.close();
+
 }
