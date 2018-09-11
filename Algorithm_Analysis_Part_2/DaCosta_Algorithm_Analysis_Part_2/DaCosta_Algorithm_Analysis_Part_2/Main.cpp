@@ -13,6 +13,9 @@ void printSum(long long _iteration, long long _sum);
 
 int main()
 {
+	ofstream saveFile;
+
+
 	// Number of times n should be multiplied by the multiplier.
 	const int TOTAL_ITERATIONS = 3; 
 	// Multiplier for n after each iteration.
@@ -103,8 +106,15 @@ int main()
 	// Question 5
 	printQuestionNumber(question++, n);
 
+	saveFile.open("question5.csv", ofstream::app);
+	long long q5Counter = 0;
+	bool printed = false;
+
 	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
 	{
+
+		saveFile << endl << "Iteration " << counter << endl;
+
 		sum = 0;
 		n *= N_MULTIPLIER;
 
@@ -115,12 +125,22 @@ int main()
 				for (k = 0; k < j; k++)
 				{
 					sum++;
+					if (i < 10)
+					{
+						saveFile << i << "," << j << "," << k << endl;
+					}
 				}
+			}
+			if (i < 25)
+			{
+				cout << endl << endl << sum << endl << endl;
 			}
 		}
 
 		printSum(n, sum);
 	}
+
+	saveFile.close();
 
 	// Question 6
 	printQuestionNumber(question++, n);
@@ -174,8 +194,6 @@ void printSum(long long _iteration, long long _sum)
 {
 	// Create a file variable.
 	ofstream csvFile;
-
-	ofstream output;
 
 	cout << "Sum for " << _iteration << " iterations = " << _sum << endl;
 	
