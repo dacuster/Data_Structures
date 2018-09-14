@@ -1,0 +1,7 @@
+﻿  HashTable.cpp
+  Main.cpp
+c:\users\dacus\documents\repos\datastructures\assignment_2_hash_tables\dacosta_assignment_2\dacosta_assignment_2\dacosta_assignment_2\main.cpp(5): warning C4930: 'HashTable hash(void)': prototyped function not called (was a variable definition intended?)
+  Song.cpp
+  Generating Code...
+HashTable.obj : error LNK2019: unresolved external symbol "class Song __cdecl song(void)" (?song@@YA?AVSong@@XZ) referenced in function "public: __thiscall HashTable::HashTable(void)" (??0HashTable@@QAE@XZ)
+C:\Users\dacus\Documents\Repos\DataStructures\Assignment_2_Hash_Tables\DaCosta_Assignment_2\DaCosta_Assignment_2\Debug\DaCosta_Assignment_2.exe : fatal error LNK1120: 1 unresolved externals
