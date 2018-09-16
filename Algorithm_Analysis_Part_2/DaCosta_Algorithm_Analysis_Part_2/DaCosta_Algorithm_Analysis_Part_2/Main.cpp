@@ -106,15 +106,8 @@ int main()
 	// Question 5
 	printQuestionNumber(question++, n);
 
-	saveFile.open("question5.csv", ofstream::app);
-	long long q5Counter = 0;
-	bool printed = false;
-
 	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
 	{
-
-		saveFile << endl << "Iteration " << counter << endl;
-
 		sum = 0;
 		n *= N_MULTIPLIER;
 
@@ -125,15 +118,7 @@ int main()
 				for (k = 0; k < j; k++)
 				{
 					sum++;
-					if (i < 10)
-					{
-						saveFile << i << "," << j << "," << k << endl;
-					}
 				}
-			}
-			if (i < 25)
-			{
-				cout << endl << endl << sum << endl << endl;
 			}
 		}
 
@@ -145,8 +130,13 @@ int main()
 	// Question 6
 	printQuestionNumber(question++, n);
 
+	saveFile.open("question6.csv", ofstream::app);
+
 	for (counter = 0; counter < TOTAL_ITERATIONS; counter++)
 	{
+
+		saveFile << endl << "Iteration " << counter << endl;
+
 		sum = 0;
 		n *= N_MULTIPLIER;
 
@@ -159,8 +149,16 @@ int main()
 					for (k = 0; k < j; k++)
 					{
 						sum++;
+						if (i < 10)
+						{
+							saveFile << i << "," << j << "," << k << endl;
+						}	
 					}
 				}
+			}
+			if (i < 25)
+			{
+				cout << endl << endl << sum << endl << endl;
 			}
 		}
 
