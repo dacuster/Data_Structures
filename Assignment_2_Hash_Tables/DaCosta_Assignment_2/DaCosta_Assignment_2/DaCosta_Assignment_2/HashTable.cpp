@@ -1,7 +1,26 @@
 #include "HashTable.h"
 
-HashTable::HashTable()
+HashTable::HashTable(Song _firstSong)
 {
-	Song song();
-	songTable[0] = song();
+
+}
+
+HashTable::~HashTable()
+{
+	
+}
+
+void HashTable::addSong(Song _song)
+{
+
+}
+
+void HashTable::listArtistSongs(std::string _songArtist)
+{
+
+}
+
+void HashTable::deleteSong(std::string _songTitle)
+{
+
 }

@@ -8,10 +8,12 @@
 class Song
 {
 public:
-
+	Song(){ }
+	Song(std::string _artist, std::string _title);
+	~Song(){ }
 
 private:
-	std::string artist;
-	std::string title;
+	std::string artist = ""; 
+	std::string title  = ""; 
 
 };

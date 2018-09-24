@@ -9,12 +9,33 @@ class HashTable
 {
 public:
 	HashTable();
-	~HashTable()
-	{
-	}
+	~HashTable();
+
+	void addSong(Song _song);
+	void listArtistSongs(std::string _songArtist);
+	void deleteSong(std::string _songTitle);
+
 
 
 private:
-	std::vector<Song> songTable;
+	class Node
+	{
+	public:
+		Node* next = nullptr;
+		Song song;
 
+		Node(Song _song, Node* _next = nullptr)
+		{
+			song = _song;
+			next = _next;
+		}
+
+		~Node()
+		{
+			delete next;
+		}
+	};
+
+	Node* head;
+	int totalNodes = 0;
 };
