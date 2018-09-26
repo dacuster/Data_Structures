@@ -9,11 +9,14 @@ class HashTable
 {
 public:
 	HashTable();
+	HashTable(int _size);
 	~HashTable();
 
 	void addSong(Song _song);
 	void listArtistSongs(std::string _songArtist);
 	void deleteSong(std::string _songTitle);
+	// TODO: Delete on submission. Used to check all values of the array.
+	void printAllContents();
 
 
 
@@ -24,10 +27,10 @@ private:
 		Node* next = nullptr;
 		Song song;
 
-		Node(Song _song, Node* _next = nullptr)
+		Node(){ }
+		Node(Song _song)
 		{
 			song = _song;
-			next = _next;
 		}
 
 		~Node()
@@ -36,6 +39,8 @@ private:
 		}
 	};
 
-	Node* head;
-	int totalNodes = 0;
+	Node** hashTable = nullptr;
+	int tableSize = 0;
+
+
 };

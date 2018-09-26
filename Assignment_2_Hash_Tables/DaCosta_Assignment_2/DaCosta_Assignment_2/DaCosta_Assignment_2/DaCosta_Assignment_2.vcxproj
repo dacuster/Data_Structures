@@ -118,7 +118,6 @@
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Karaoke.cpp" />
     <ClCompile Include="Song.cpp" />
-    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashTable.h" />
