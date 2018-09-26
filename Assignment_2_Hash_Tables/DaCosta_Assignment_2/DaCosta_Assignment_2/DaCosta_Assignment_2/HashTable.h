@@ -14,7 +14,7 @@ public:
 
 	void addSong(Song _song);
 	void listArtistSongs(std::string _songArtist);
-	void deleteSong(std::string _songTitle);
+	void deleteSong(Song _song);
 	// TODO: Delete on submission. Used to check all values of the array.
 	void printAllContents();
 

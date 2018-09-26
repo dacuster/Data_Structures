@@ -2,6 +2,20 @@
 
 enum COMMANDS {ADD, LIST, DELETE, QUIT };
 
+/*
+	TODO:
+	Read file
+	First number is test cases (how many times it runs)
+	Next number is song addition size
+	Next number is number of lines of commands
+	Next few lines are commands
+	Next number is song addition
+	Next number is number of lines of commands
+	Next few lines are commands
+
+	Inputs are ARTIST then TITLE
+
+*/
 int main()
 {
 	std::string command;

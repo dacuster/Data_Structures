@@ -16,6 +16,8 @@ public:
 	std::string getTitle() const { return title; }
 	void setArtist(std::string _artist) { artist = _artist; }
 	void setTitle(std::string _title) { title = _title; }
+	const bool operator== (Song const &_rightSong);
+	const bool operator!= (Song const &_rightSong);
 
 private:
 	std::string artist = ""; 
