@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-
 class Song
 {
 public:
@@ -14,13 +13,13 @@ public:
 
 	std::string getArtist() const { return artist; }
 	std::string getTitle() const { return title; }
+
 	void setArtist(std::string _artist) { artist = _artist; }
 	void setTitle(std::string _title) { title = _title; }
+
 	const bool operator== (Song const &_rightSong);
-	const bool operator!= (Song const &_rightSong);
 
 private:
-	std::string artist = ""; 
-	std::string title  = ""; 
-
+	std::string artist = "";
+	std::string title  = "";
 };

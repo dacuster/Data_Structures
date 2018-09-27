@@ -7,8 +7,8 @@ HashTable::HashTable()
 
 HashTable::HashTable(int _size)
 {
-	tableSize = _size;               
-	hashTable = new Node*[tableSize]; 
+	tableSize = _size;
+	hashTable = new Node*[tableSize];
 
 	/*
 		Populate the table with null nodes.
@@ -21,11 +21,24 @@ HashTable::HashTable(int _size)
 
 HashTable::~HashTable()
 {
+	/*
+		Fail safe to delete every pointer in the table and any linked list pointers.
+	*/
 	for (int i = 0; i < tableSize; i++)
 	{
-		delete hashTable[i];
-	}
+		Node *tempNode = hashTable[i];
+		
+		while (tempNode != nullptr)
+		{
+			Node *nextTempNode = tempNode;
+			tempNode = tempNode->next;
 
+			delete nextTempNode;
+		}
+
+		delete tempNode;
+	}
+	
 	delete[] hashTable;
 }
 
@@ -37,35 +50,33 @@ void HashTable::addSong(Song _song)
 	/*
 		Add the ASCII values of each character of the artist's name.
 	*/
-	for (int i = 0; i < _song.getArtist().length(); i++)
+	for (int i = 0; i < songArtist.length(); i++)
 	{
 		position += songArtist[i];
 	}
 
 	/*
-		Set the actual position in the table that the
-		song will go.
+		Set the actual position in the table that the song will go.
 	*/
 	position %= tableSize;
 
 	/*
-		Add the song to a node to add to the table.
+		Add the song to the table.
 	*/
 	Node* newNode = new Node(_song);
 
 	/*
-		Check if the current table position is empty and add the
-		new song node to the table at that position.
-		If not, traverse a linked list to find the end and add
-		it there.
+		Check if the current table position is empty and add the song.
 	*/
 	if (hashTable[position] == nullptr)
 	{
 		hashTable[position] = newNode;
-		Song nextSong = newNode->next->song;
-		std::cout << nextSong.getTitle() << " by " << nextSong.getArtist() << " has been added to your list." << std::endl;
+		std::cout << hashTable[position]->song.getTitle() << " by " << hashTable[position]->song.getArtist() << " has been added to your list." << std::endl;
 		return;
 	}
+	/*
+		Traverse the linked list to find an empty location.
+	*/
 	else
 	{
 		Node *tempNode = hashTable[position];
@@ -80,6 +91,8 @@ void HashTable::addSong(Song _song)
 		std::cout << nextSong.getTitle() << " by " << nextSong.getArtist() << " has been added to your list." << std::endl;
 		return;
 	}
+
+	return;
 }
 
 void HashTable::listArtistSongs(std::string _songArtist)
@@ -89,72 +102,77 @@ void HashTable::listArtistSongs(std::string _songArtist)
 
 void HashTable::deleteSong(Song _song)
 {
-	/*
-		TODO:
-		Check if the next pointer is the song being searched.
-		Assign the song being searched (next pointer) to a temp pointer.
-		Assign next pointer to next pointer next pointer currentNode->next = currentNode->next->next.
-		Delete 'temp' node at address.
-	*/
 	int position           = 0;                 
 	std::string songArtist = _song.getArtist();
 
 	/*
 		Add the ASCII values of each character of the artist's name.
 	*/
-	for (int i = 0; i < _song.getArtist().length(); i++)
+	for (int i = 0; i < songArtist.length(); i++)
 	{
 		position += songArtist[i];
 	}
 
 	/*
-		Set the actual position in the table that the
-		song will go.
+		Set the actual position in the table that the song will go.
 	*/
 	position %= tableSize;
 
 	/*
-		Check if the current table position is empty and return since
-		there is no song to delete. Otherwise, traverse the linked 
-		list until the song is found or the end is reached.
+		The position that the song would be in is empty so it's not in the table.
 	*/
 	if (hashTable[position] == nullptr)
 	{
 		return;
 	}
 	/*
-		Check if the current position in the table is the song we
-		are looking for. If it is, delete it and make adjustments to the linked list.
+		The position in the table is exactly where the song is.
 	*/
 	else if (hashTable[position]->song == _song)
 	{
-		Node* tempNode = hashTable[position]->next;
+		Node* tempNode      = hashTable[position];       
+		hashTable[position] = hashTable[position]->next; 
 
-		delete hashTable[position];
+		std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from your list." << std::endl;
 
-		hashTable[position] = tempNode;
+		delete tempNode;
+
+		return;
 	}
 	/*
-		Traverse the linked list until the song is found or the end is reached.
-		If the song is found, delete it and make adjustments to the linked list.
+		Traverse the linked list at the table position to see if the song is in it.
 	*/
 	else
 	{
-		Node *tempNode = hashTable[position];
+		Node *currentNode = hashTable[position];
 
-		while (tempNode != nullptr && tempNode->next->song != _song)
+		while (currentNode->next != nullptr)
 		{
-			*tempNode = *tempNode->next;
+			if (currentNode->next->song == _song)
+			{
+				Node *tempNode    = currentNode->next;
+				currentNode->next = tempNode->next;
+
+				std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from your list." << std::endl;
+
+				delete tempNode;
+				return;
+			}
+			else
+			{
+				currentNode = currentNode->next;
+			}
 		}
 
-		if (tempNode->next)
-		{
-		}
+		std::cout << "Could not find " << _song.getTitle() << " by " << _song.getArtist() << std::endl;
 
-		tempNode->next = newNode;
+		return;
 	}
+
+	return;
 }
 
+//TODO: Delete after testing.
 void HashTable::printAllContents()
 {
 	for (int i = 0; i < tableSize; i++)
@@ -170,10 +188,12 @@ void HashTable::printAllContents()
 			int linkedListCounter = 0;
 			while (tempNode != nullptr)
 			{
-				std::cout << linkedListCounter << "is " << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << std::endl;
+				std::cout << linkedListCounter << " is " << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << std::endl;
 				linkedListCounter++;
 				tempNode = tempNode->next;
 			}
 		}
 	}
+
+	return;
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include "Song.h"
@@ -27,7 +26,10 @@ private:
 		Node* next = nullptr;
 		Song song;
 
-		Node(){ }
+		Node()
+		{
+
+		}
 		Node(Song _song)
 		{
 			song = _song;
@@ -35,7 +37,7 @@ private:
 
 		~Node()
 		{
-			delete next;
+
 		}
 	};
 
