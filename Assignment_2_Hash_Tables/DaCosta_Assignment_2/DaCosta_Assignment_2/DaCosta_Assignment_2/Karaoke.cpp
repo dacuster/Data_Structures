@@ -1,11 +1,8 @@
 #include "HashTable.h"
+#include <fstream>
+const std::string FILE_NAME = "karaoke.txt";
+const int TABLE_SIZE_MULTIPLIER = 9;
 
-/*
-	All possible commands that can be used in the program.
-*/
-/// <summary>
-///		All possible commands for the program.
-/// </summary>
 enum COMMANDS
 {
 	/// <summary>
@@ -26,21 +23,7 @@ enum COMMANDS
 	QUIT
 };
 
-/*
-	TODO:
-	Read file
-	First number is test cases (how many times it runs)
-	Next number is song addition size
-	Next number is number of lines of commands
-	Next few lines are commands
-	Next number is song addition
-	Next number is number of lines of commands
-	Next few lines are commands
-
-	Inputs are ARTIST then TITLE
-
-*/
-
+COMMANDS convertStringToEnum(std::string _command);
 
 /*
 	These two functions are not mine. Credit is given down below at the definitions.
@@ -50,29 +33,99 @@ int binarySearch(std::vector<int> _primes, int _left, int _right, int _n);
 
 int main()
 {
-	std::string command;
+	std::ifstream inputFile(FILE_NAME);
+	int testCaseNumber = 0;
 
-	HashTable newTable = HashTable(20);
+	std::string command   = ""; 
+	std::string inputLine = ""; 
+	
+	inputFile >> command;
 
-	newTable.printAllContents();
-	Song newSong = Song("Avenged_Sevenfold", "Nightmare");
-	Song newSong2 = Song("Avenged_Sevenfold", "God_Hates_Us");
+	testCaseNumber = std::stoi(command);
 
-	newTable.addSong(newSong);
+	for (int i = 1; i <= testCaseNumber; i++)
+	{
+		std::cout << "--------------------- TEST CASE " << i << " ---------------------" << std::endl;
 
-	newTable.addSong(newSong2);
-
-	newTable.printAllContents();
-
-	newTable.deleteSong(Song("Avenged_Sevenfold", "Nightmare"));
-
-
-	newTable.printAllContents();
-
-	system("pause");
+		inputFile >> command;
+		int size = std::stoi(command);
 
 
+		HashTable newTable = HashTable(size);
+
+		inputFile >> command;
+		int numberOfCommands = std::stoi(command);
+
+		for (int j = 0; j < numberOfCommands; j++)
+		{
+			inputFile >> command;
+			std::string songArtist = ""; 
+			std::string songTitle  = ""; 
+
+			switch (convertStringToEnum(command))
+			{
+			case ADD:
+				inputFile >> songArtist;
+				inputFile >> songTitle;
+				newTable.addSong(Song(songArtist, songTitle));
+				break;
+			case DELETE:
+				inputFile >> songArtist;
+				inputFile >> songTitle;
+				newTable.deleteSong(Song(songArtist, songTitle));
+				break;
+			case LIST:
+				inputFile >> songArtist;
+				newTable.listArtistSongs(songArtist);
+				break;
+			case QUIT:
+				std::cout << "Quitting application." << std::endl;
+				j = numberOfCommands;
+				i = testCaseNumber;
+				break;
+			default:
+				std::cout << "Error. No correct command found. Exiting." << std::endl;
+				j = numberOfCommands;
+				i = testCaseNumber;
+				break;
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "Enter a character to close the console..." << std::endl;
+
+	std::string input;
+	std::cin >> input;
 	return 0;
+}
+
+/// <summary>
+/// Converts a string to a command enum.
+/// </summary>
+/// <param name="_command">
+///		The command to convert.
+///	</param>
+/// <returns>
+///		The corresponding command enum.
+///	</returns>
+COMMANDS convertStringToEnum(std::string _command)
+{
+	if (_command == "ADD")
+	{
+		return ADD;
+	}
+	else if (_command == "LIST")
+	{
+		return LIST;
+	}
+	else if (_command == "DELETE")
+	{
+		return DELETE;
+	}
+	else
+	{
+		return QUIT;
+	}
 }
 
 
@@ -95,7 +148,7 @@ int main()
 ///	</returns>
 int Sieve(int _numToCheck)
 {
-    const int n = 1000000;
+	const int n = 100000;
 
 	// Array to store all primes less than 10^6.
 	std::vector<int> primes;
@@ -105,13 +158,13 @@ int Sieve(int _numToCheck)
 		smaller than (2*x + 2) for any number given
 		a number x.
 	*/
-    int nNew = sqrt(n);
+    int nNew = (int)sqrt(n);
 
 	/*
 		This array is used to separate numbers of the
 		form i+j+2ij from others where  1 <= i <= j
     */
-	int marked[n / 2 + 500] = {0};
+	int marked[n / 2 + 500] { 0 };
 
     // Eliminate indexes which do not produce primes.
 	for (int i = 1; i <= (nNew - 1) / 2; i++)

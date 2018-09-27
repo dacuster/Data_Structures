@@ -1,0 +1,16 @@
+2
+3
+5
+ADD Amy_Winehouse Back_To_Black
+ADD James_Blake Retrograde
+ADD Lady_Gaga Judas
+LIST Lady_Gaga
+DELETE James_Blake Retrograde
+4
+6
+ADD The_Mars_Volta The_Widow
+ADD No_Doubt Bathwater
+ADD Lana_Del_Rey Video_Games
+LIST The_Mars_Volta
+DELETE No_Doubt Bathwater
+ADD No_Doubt Sunday_Morning

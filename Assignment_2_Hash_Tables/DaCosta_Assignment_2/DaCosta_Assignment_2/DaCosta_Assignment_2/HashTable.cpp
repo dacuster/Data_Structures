@@ -1,10 +1,19 @@
 #include "HashTable.h"
 
+/// <summary>
+/// Initializes a new instance of the <see cref="HashTable"/> class with a default table size of 1.
+/// </summary>
 HashTable::HashTable()
 {
 	tableSize = 1;
 }
 
+/// <summary>
+/// Initializes a new instance of the <see cref="HashTable"/> class.
+/// </summary>
+/// <param name="_size">
+///		The dynamic size of the table.
+///	</param>
 HashTable::HashTable(int _size)
 {
 	tableSize = _size;
@@ -19,6 +28,9 @@ HashTable::HashTable(int _size)
 	}
 }
 
+/// <summary>
+/// Finalizes an instance of the <see cref="HashTable"/> class.
+/// </summary>
 HashTable::~HashTable()
 {
 	/*
@@ -42,6 +54,12 @@ HashTable::~HashTable()
 	delete[] hashTable;
 }
 
+/// <summary>
+/// Adds a song to the hash table.
+/// </summary>
+/// <param name="_song">
+///		The song to add.
+///	</param>
 void HashTable::addSong(Song _song)
 {
 	int position           = 0;                 
@@ -95,11 +113,83 @@ void HashTable::addSong(Song _song)
 	return;
 }
 
+/// <summary>
+/// Lists the given artist's songs if they are in the table.
+/// </summary>
+/// <param name="_songArtist">
+///		The name of the artist.
+///	</param>
 void HashTable::listArtistSongs(std::string _songArtist)
 {
+	int position = 0;
 
+	/*
+		Add the ASCII values of each character of the artist's name.
+	*/
+	for (int i = 0; i < _songArtist.length(); i++)
+	{
+		position += _songArtist[i];
+	}
+
+	/*
+		Set the actual position in the table that the song will go.
+	*/
+	position %= tableSize;
+
+	/*
+		The position that the song would be in is empty so it's not in the table.
+	*/
+	if (hashTable[position] == nullptr)
+	{
+		std::cout << "There are no songs by " << _songArtist << " in the table." << std::endl;
+		return;
+	}
+	/*
+		Traverse the linked list at the table position to print all the songs
+		by the given artist if any exist.
+	*/
+	else
+	{
+		Node *currentNode = hashTable[position];
+
+		int numberOfSongs = 0;
+
+		while (currentNode != nullptr)
+		{
+			if (currentNode->song.getArtist() == _songArtist)
+			{
+				if (numberOfSongs == 0)
+				{
+					std::cout << "Songs by " << _songArtist << ": ";
+				}
+				else if (numberOfSongs > 0)
+				{
+					std::cout << ", ";
+				}
+				std::cout << currentNode->song.getTitle();
+				numberOfSongs++;
+			}
+			currentNode = currentNode->next;
+		}
+
+		if (numberOfSongs == 0)
+		{
+			std::cout << "Could not find any songs by " << _songArtist << "." << std::endl;
+		}
+		else
+		{
+			std::cout << std::endl;
+		}
+		return;
+	}
 }
 
+/// <summary>
+/// Deletes the given song from the table if it exists.
+/// </summary>
+/// <param name="_song">
+///		The song to delete.
+///	</param>
 void HashTable::deleteSong(Song _song)
 {
 	int position           = 0;                 
