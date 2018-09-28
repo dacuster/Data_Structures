@@ -1,6 +1,6 @@
 ﻿  HashTable.cpp
-e:\files\repositories\datastructures\assignment_2_hash_tables\dacosta_assignment_2\dacosta_assignment_2\dacosta_assignment_2\hashtable.cpp(277): warning C4018: '<': signed/unsigned mismatch
+c:\users\dacus\documents\repos\datastructures\assignment_2_hash_tables\dacosta_assignment_2\dacosta_assignment_2\dacosta_assignment_2\hashtable.cpp(277): warning C4018: '<': signed/unsigned mismatch
   Karaoke.cpp
   Song.cpp
   Generating Code...
-  DaCosta_Assignment_2.vcxproj -> E:\Files\Repositories\datastructures\Assignment_2_Hash_Tables\DaCosta_Assignment_2\DaCosta_Assignment_2\Debug\DaCosta_Assignment_2.exe
+  DaCosta_Assignment_2.vcxproj -> C:\Users\dacus\Documents\Repos\DataStructures\Assignment_2_Hash_Tables\DaCosta_Assignment_2\DaCosta_Assignment_2\Debug\DaCosta_Assignment_2.exe
