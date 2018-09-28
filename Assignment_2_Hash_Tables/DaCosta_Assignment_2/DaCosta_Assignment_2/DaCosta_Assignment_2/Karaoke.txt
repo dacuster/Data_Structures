@@ -1,16 +1,44 @@
 2
-3
-5
-ADD Amy_Winehouse Back_To_Black
-ADD James_Blake Retrograde
-ADD Lady_Gaga Judas
-LIST Lady_Gaga
-DELETE James_Blake Retrograde
-4
-6
-ADD The_Mars_Volta The_Widow
-ADD No_Doubt Bathwater
-ADD Lana_Del_Rey Video_Games
-LIST The_Mars_Volta
-DELETE No_Doubt Bathwater
-ADD No_Doubt Sunday_Morning
+8
+10
+ADD Avenged_Sevenfold God_Hates_Us
+ADD Avenged_Sevenfold Unholy_Confessions
+ADD Metallica Enter_Sandman
+DELETE Avenged_Sevenfold Unholy_Confessions
+ADD Seether Nobody_Praying_For_Me
+ADD Skillet Monster
+ADD Metallica Blackened
+LIST Skillet
+ADD System_Of_A_Down Toxicity
+ADD Theory_Of_A_Deadman Rx(Medicate)
+22
+29
+ADD Disturbed Stricken
+ADD Metallica Hardwired
+ADD Shinedown Call_Me
+ADD Slipknot Psychosocial
+ADD Five_Finger_Death_Punch Sham_Pain
+LIST Shinedown
+ADD Disturbed Ten_Thousand_Fists
+ADD Theory_Of_A_Deadman Hate_My_Life
+ADD Breaking_Benjamin Breath
+DELETE Metallica Hardwired
+DELETE Theory_Of_A_Deadman Hate_My_Life
+ADD Chevelle The_Red
+ADD Korn Coming_Undone
+ADD Skillet Awake_and_Alive
+DELETE Bring_Me_The_Horizon Happy_Song
+ADD Bullet_For_My_Valentine Tears_Don't_Fall
+DELETE Shinedown Call_Me
+ADD System_Of_A_Down Chop_Suey!
+ADD Avenged_Sevenfold Welcome_To_The_Family
+ADD Five_Finger_Death_Punch Jekyll_and_Hyde
+ADD Three_Days_Grace I_Am_Machine
+ADD Metallica Atlas_Rise
+ADD Volbeat Lola_Montez
+ADD Godsmack I_Stand_Alone
+LIST Metallica
+ADD Avenged_Sevenfold Natural_Born_Killer
+ADD Shinedown 45
+ADD In_This_Moment Sick_Like_Me
+DELETE Shinedown Call_Me

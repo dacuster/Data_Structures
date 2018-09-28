@@ -1,5 +1,26 @@
+﻿/*
+Author(s):		Nick DaCosta
+Class:			CSI-281-03
+Assignment:		Assignment 2 Hash Tables
+Date Assigned:	09-11-2018
+Due Date:		09-27-2018 11:59pm
+
+Description:	This file includes the main and other non-class specific functions.
+
+Certification of Authenticity:
+I certify that this is entirely my own work, except where I have given
+fully-documented references to the work of others. I understand the definition
+and consequences of plagiarism and acknowledge that the assessor of this
+assignment may, for the purpose of assessing this assignment: Reproduce this
+assignment and provide a copy to another member of academic staff; and/or
+Communicate a copy of this assignment to a plagiarism checking service (which
+may then retain a copy of this assignment on its database for the purpose of
+future plagiarism checking).
+*/
+
 #include "HashTable.h"
 #include <fstream>
+
 const std::string FILE_NAME = "karaoke.txt";
 const int TABLE_SIZE_MULTIPLIER = 9;
 
@@ -34,31 +55,34 @@ int binarySearch(std::vector<int> _primes, int _left, int _right, int _n);
 int main()
 {
 	std::ifstream inputFile(FILE_NAME);
+
 	int testCaseNumber = 0;
 
 	std::string command   = ""; 
-	std::string inputLine = ""; 
+	std::string inputLine = "";  
 	
 	inputFile >> command;
 
 	testCaseNumber = std::stoi(command);
 
-	for (int i = 1; i <= testCaseNumber; i++)
+	for (int counterOne = 1; counterOne <= testCaseNumber; counterOne++)
 	{
-		std::cout << "--------------------- TEST CASE " << i << " ---------------------" << std::endl;
+		std::cout << "--------------------- TEST CASE " << counterOne << " ---------------------" << std::endl;
 
 		inputFile >> command;
+
 		int size = std::stoi(command);
 
-
-		HashTable newTable = HashTable(size);
+		HashTable newTable = HashTable(Sieve(size * TABLE_SIZE_MULTIPLIER));
 
 		inputFile >> command;
+
 		int numberOfCommands = std::stoi(command);
 
-		for (int j = 0; j < numberOfCommands; j++)
+		for (int counterTwo = 0; counterTwo < numberOfCommands; counterTwo++)
 		{
 			inputFile >> command;
+
 			std::string songArtist = ""; 
 			std::string songTitle  = ""; 
 
@@ -67,35 +91,52 @@ int main()
 			case ADD:
 				inputFile >> songArtist;
 				inputFile >> songTitle;
+
 				newTable.addSong(Song(songArtist, songTitle));
+
 				break;
 			case DELETE:
 				inputFile >> songArtist;
 				inputFile >> songTitle;
+
 				newTable.deleteSong(Song(songArtist, songTitle));
+
 				break;
 			case LIST:
 				inputFile >> songArtist;
+
 				newTable.listArtistSongs(songArtist);
+
 				break;
 			case QUIT:
 				std::cout << "Quitting application." << std::endl;
-				j = numberOfCommands;
-				i = testCaseNumber;
+
+				counterTwo = numberOfCommands;
+				counterOne = testCaseNumber++;
+
 				break;
 			default:
 				std::cout << "Error. No correct command found. Exiting." << std::endl;
-				j = numberOfCommands;
-				i = testCaseNumber;
+
+				counterTwo = numberOfCommands;
+				counterOne = testCaseNumber++;
+
 				break;
 			}
 		}
+		/*
+			Uncomment to print all the contents in the current table.
+		*/
+		//newTable.printAllContents();
+
 		std::cout << std::endl;
 	}
 	std::cout << "Enter a character to close the console..." << std::endl;
 
 	std::string input;
+
 	std::cin >> input;
+
 	return 0;
 }
 
@@ -106,7 +147,7 @@ int main()
 ///		The command to convert.
 ///	</param>
 /// <returns>
-///		The corresponding command enum.
+///		Enumerator.
 ///	</returns>
 COMMANDS convertStringToEnum(std::string _command)
 {
@@ -144,13 +185,13 @@ COMMANDS convertStringToEnum(std::string _command)
 ///		The number used to find the closest prime below it.
 ///	</param>
 /// <returns>
-///		The closest prime below the given input.
+///		Integer.
 ///	</returns>
 int Sieve(int _numToCheck)
 {
 	const int n = 100000;
 
-	// Array to store all primes less than 10^6.
+	// Array to store all primes less than 10^5.
 	std::vector<int> primes;
 
     /*
@@ -208,7 +249,7 @@ int Sieve(int _numToCheck)
 ///		The input number.
 ///	</param>
 /// <returns>
-///		The closest prime lower than the given input n.
+///		Integer.
 ///	</returns>
 int binarySearch(std::vector<int> _primes, int _left, int _right, int _n)
 {

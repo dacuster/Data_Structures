@@ -1,12 +1,24 @@
-#include "HashTable.h"
+﻿/*
+Author(s):		Nick DaCosta
+Class:			CSI-281-03
+Assignment:		Assignment 2 Hash Tables
+Date Assigned:	09-11-2018
+Due Date:		09-27-2018 11:59pm
 
-/// <summary>
-/// Initializes a new instance of the <see cref="HashTable"/> class with a default table size of 1.
-/// </summary>
-HashTable::HashTable()
-{
-	tableSize = 1;
-}
+Description:	This file includes the HashTable class function definitions.
+
+Certification of Authenticity:
+I certify that this is entirely my own work, except where I have given
+fully-documented references to the work of others. I understand the definition
+and consequences of plagiarism and acknowledge that the assessor of this
+assignment may, for the purpose of assessing this assignment: Reproduce this
+assignment and provide a copy to another member of academic staff; and/or
+Communicate a copy of this assignment to a plagiarism checking service (which
+may then retain a copy of this assignment on its database for the purpose of
+future plagiarism checking).
+*/
+
+#include "HashTable.h"
 
 /// <summary>
 /// Initializes a new instance of the <see cref="HashTable"/> class.
@@ -17,15 +29,7 @@ HashTable::HashTable()
 HashTable::HashTable(int _size)
 {
 	tableSize = _size;
-	hashTable = new Node*[tableSize];
-
-	/*
-		Populate the table with null nodes.
-	*/
-	for (int counter = 0; counter < tableSize; counter++)
-	{
-		hashTable[counter] = nullptr;
-	}
+	hashTable = new Node*[tableSize] { nullptr };
 }
 
 /// <summary>
@@ -36,21 +40,19 @@ HashTable::~HashTable()
 	/*
 		Fail safe to delete every pointer in the table and any linked list pointers.
 	*/
-	for (int i = 0; i < tableSize; i++)
+	for (int counter = 0; counter < tableSize; counter++)
 	{
-		Node *tempNode = hashTable[i];
+		Node *tempNode = hashTable[counter];
 		
 		while (tempNode != nullptr)
 		{
-			Node *nextTempNode = tempNode;
-			tempNode = tempNode->next;
+			Node *nextTempNode = tempNode;       
+			tempNode           = tempNode->next; 
 
 			delete nextTempNode;
 		}
-
 		delete tempNode;
 	}
-	
 	delete[] hashTable;
 }
 
@@ -62,24 +64,13 @@ HashTable::~HashTable()
 ///	</param>
 void HashTable::addSong(Song _song)
 {
-	int position           = 0;                 
-	std::string songArtist = _song.getArtist(); 
-
 	/*
-		Add the ASCII values of each character of the artist's name.
+		Get the position in the table to add the song.
 	*/
-	for (int i = 0; i < songArtist.length(); i++)
-	{
-		position += songArtist[i];
-	}
+	int position = positionFinder(_song.getArtist());
 
 	/*
-		Set the actual position in the table that the song will go.
-	*/
-	position %= tableSize;
-
-	/*
-		Add the song to the table.
+		Create a new node for the song.
 	*/
 	Node* newNode = new Node(_song);
 
@@ -101,15 +92,15 @@ void HashTable::addSong(Song _song)
 
 		while (tempNode->next != nullptr)
 		{
-			*tempNode = *tempNode->next;
+			tempNode = tempNode->next;
 		}
 
-		tempNode->next = newNode;
-		Song nextSong = tempNode->next->song;
+		tempNode->next = newNode;              
+		Song nextSong  = tempNode->next->song; 
+
 		std::cout << nextSong.getTitle() << " by " << nextSong.getArtist() << " has been added to your list." << std::endl;
 		return;
 	}
-
 	return;
 }
 
@@ -121,20 +112,10 @@ void HashTable::addSong(Song _song)
 ///	</param>
 void HashTable::listArtistSongs(std::string _songArtist)
 {
-	int position = 0;
-
 	/*
-		Add the ASCII values of each character of the artist's name.
+		Get the position in the table to check.
 	*/
-	for (int i = 0; i < _songArtist.length(); i++)
-	{
-		position += _songArtist[i];
-	}
-
-	/*
-		Set the actual position in the table that the song will go.
-	*/
-	position %= tableSize;
+	int position = positionFinder(_songArtist);
 
 	/*
 		The position that the song would be in is empty so it's not in the table.
@@ -150,9 +131,8 @@ void HashTable::listArtistSongs(std::string _songArtist)
 	*/
 	else
 	{
-		Node *currentNode = hashTable[position];
-
-		int numberOfSongs = 0;
+		Node *currentNode = hashTable[position]; 
+		int numberOfSongs = 0;                   
 
 		while (currentNode != nullptr)
 		{
@@ -162,6 +142,9 @@ void HashTable::listArtistSongs(std::string _songArtist)
 				{
 					std::cout << "Songs by " << _songArtist << ": ";
 				}
+				/*
+					If a song has been found before, add a comma to separate the songs.
+				*/
 				else if (numberOfSongs > 0)
 				{
 					std::cout << ", ";
@@ -174,7 +157,7 @@ void HashTable::listArtistSongs(std::string _songArtist)
 
 		if (numberOfSongs == 0)
 		{
-			std::cout << "Could not find any songs by " << _songArtist << "." << std::endl;
+			std::cout << "Couldn\'t find any songs by " << _songArtist << "." << std::endl;
 		}
 		else
 		{
@@ -192,21 +175,10 @@ void HashTable::listArtistSongs(std::string _songArtist)
 ///	</param>
 void HashTable::deleteSong(Song _song)
 {
-	int position           = 0;                 
-	std::string songArtist = _song.getArtist();
-
 	/*
-		Add the ASCII values of each character of the artist's name.
+		Get the position in the table to check.
 	*/
-	for (int i = 0; i < songArtist.length(); i++)
-	{
-		position += songArtist[i];
-	}
-
-	/*
-		Set the actual position in the table that the song will go.
-	*/
-	position %= tableSize;
+	int position = positionFinder(_song.getArtist());
 
 	/*
 		The position that the song would be in is empty so it's not in the table.
@@ -223,10 +195,9 @@ void HashTable::deleteSong(Song _song)
 		Node* tempNode      = hashTable[position];       
 		hashTable[position] = hashTable[position]->next; 
 
-		std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from your list." << std::endl;
+		std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from the list." << std::endl;
 
 		delete tempNode;
-
 		return;
 	}
 	/*
@@ -243,7 +214,7 @@ void HashTable::deleteSong(Song _song)
 				Node *tempNode    = currentNode->next;
 				currentNode->next = tempNode->next;
 
-				std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from your list." << std::endl;
+				std::cout << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " has been deleted from the list." << std::endl;
 
 				delete tempNode;
 				return;
@@ -254,36 +225,59 @@ void HashTable::deleteSong(Song _song)
 			}
 		}
 
-		std::cout << "Could not find " << _song.getTitle() << " by " << _song.getArtist() << std::endl;
+		std::cout << _song.getTitle() << " by " << _song.getArtist() << " is not in the list." << std::endl;
 
 		return;
 	}
-
 	return;
 }
 
-//TODO: Delete after testing.
+/// <summary>
+///		Prints all the contents of the hash table for the slots that contain data.
+/// </summary>
 void HashTable::printAllContents()
 {
-	for (int i = 0; i < tableSize; i++)
+	std::cout << std::endl << "------------------------Hash Table Contents------------------------" << std::endl << "Table size: " << tableSize << std::endl;
+
+	for (int counter = 0; counter < tableSize; counter++)
 	{
-		if (hashTable[i] == nullptr)
+		if (hashTable[counter] != nullptr)
 		{
-			std::cout << i << " is null." << std::endl;
-		}
-		else
-		{
-			std::cout << i << " is " << hashTable[i]->song.getTitle() << " by " << hashTable[i]->song.getArtist() << std::endl;
-			Node *tempNode = hashTable[i]->next;
+			std::cout << counter << " is " << hashTable[counter]->song.getTitle() << " by " << hashTable[counter]->song.getArtist() << " ";
+
+			Node *tempNode = hashTable[counter]->next;
+
 			int linkedListCounter = 0;
+
 			while (tempNode != nullptr)
 			{
-				std::cout << linkedListCounter << " is " << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << std::endl;
+				std::cout << counter << "-" << (linkedListCounter + 1) << " is " << tempNode->song.getTitle() << " by " << tempNode->song.getArtist() << " ";
 				linkedListCounter++;
 				tempNode = tempNode->next;
 			}
+			std::cout << std::endl;
 		}
 	}
-
 	return;
+}
+
+/// <summary>
+/// Determines the position in the table for the song.
+/// </summary>
+/// <param name="_songArtist">
+///		The artist of the song.
+///	</param>
+/// <returns>
+///		Integer.
+///	</returns>
+int HashTable::positionFinder(std::string _songArtist)
+{
+	int position = 0;
+
+	for (int counter = 0; counter < _songArtist.length(); counter++)
+	{
+		position += _songArtist[counter];
+	}
+
+	return position % tableSize;
 }
