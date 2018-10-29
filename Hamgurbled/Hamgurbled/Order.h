@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ostream>
 
 class Order
 {
@@ -18,10 +19,11 @@ public:
 	
 	const bool operator<(const Order& _comparisonOrder) { return this->endTime < _comparisonOrder.endTime; }
 
-	void printDetails();	
+
+	friend std::ostream &operator<<(std::ostream &_output, const Order &_order);
 
 private:
-	std::vector<std::string> order;
+	std::vector<std::string> items;
 	int startTime;
 	int endTime;
 

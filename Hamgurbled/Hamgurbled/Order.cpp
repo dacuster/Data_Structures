@@ -9,15 +9,8 @@ void Order::setStartTime(const int _start)
 
 void Order::addItem(const std::string _item)
 {
-	order.push_back(_item);
+	items.push_back(_item);
 	endTime += getCooktime(_item);
-	return;
-}
-
-// TODO: Print order details.
-void Order::printDetails()
-{
-
 	return;
 }
 
@@ -49,4 +42,16 @@ int Order::getCooktime(std::string _item)
 	}
 
 	return 0;
+}
+
+std::ostream & operator<<(std::ostream & _output, const Order & _order)
+{
+	_output << _order.startTime << " " << _order.endTime;
+
+	for (size_t currentItem = 0; currentItem < _order.items.size(); currentItem++)
+	{
+		_output << " " << _order.items[currentItem];
+	}
+
+	return _output;
 }

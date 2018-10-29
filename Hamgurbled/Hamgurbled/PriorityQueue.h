@@ -15,6 +15,8 @@ public:
 
 	void clearQueue();
 
+	void printQueue();
+
 private:
 	Order* orders = nullptr;
 	int orderSize = 0;

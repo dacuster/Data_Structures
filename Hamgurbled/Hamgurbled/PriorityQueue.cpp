@@ -52,3 +52,11 @@ void PriorityQueue::clearQueue()
 {
 	delete[] orders;
 }
+
+void PriorityQueue::printQueue()
+{
+	for (int queueCounter = 0; queueCounter < orderSize; queueCounter++)
+	{
+		std::cout << orders[queueCounter] << std::endl;
+	}
+}

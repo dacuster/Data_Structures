@@ -4,9 +4,9 @@
 #include <fstream>
 #include "Gurbled.h"
 
-constexpr auto FILENAME = "orders.txt";
+const std::string FILENAME = "orders.txt";
 
-void main()
+int main()
 {
 
 	std::fstream file(FILENAME);
@@ -18,7 +18,7 @@ void main()
 
 		PriorityQueue orders = NULL;
 
-		for (int caseNumber = 0; caseNumber < testCases; caseNumber++)
+		for (int caseNumber = 1; caseNumber <= testCases; caseNumber++)
 		{
 			int numberOfOrders = 0;
 			file >> numberOfOrders;
@@ -26,6 +26,9 @@ void main()
 			orders = PriorityQueue(numberOfOrders);
 
 			insertOrders(orders, numberOfOrders, file);
+
+			std::cout << "---------------------TEST CASE " << caseNumber << "------------------------" << std::endl;
+
 		}
 	}
 	else
@@ -36,10 +39,10 @@ void main()
 	std::string input;
 	std::cin >> input;
 
-	return;
+	return 0;
 }
 
-// TODO: Chec that this function is completed.
+// TODO: Check that this function is completed.
 void insertOrders(PriorityQueue& _orders, int _numberOfOrders, std::fstream& _stream)
 {
 	int numberOfItems = 0;
@@ -62,4 +65,6 @@ Order readOrder(int _numberOfItems, std::fstream& _stream)
 	{
 
 	}
+
+	return order;
 }
