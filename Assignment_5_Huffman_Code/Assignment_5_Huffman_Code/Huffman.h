@@ -24,7 +24,7 @@ public:
 	Comparison() { }
 	bool operator()(const Node& _left, const Node& _right) const
 	{
-		return (_left < _right);
+		return (_left > _right);
 	}
 };
 

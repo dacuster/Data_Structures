@@ -24,6 +24,7 @@ void Huffman::print(Node * _root, std::string _phrase)
 
 void Huffman::generate(std::map<char, size_t> _characterMap)
 {
+	
 
 	return;
 }

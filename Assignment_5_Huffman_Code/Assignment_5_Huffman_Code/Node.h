@@ -2,13 +2,13 @@
 class Node
 {
 public:
-	Node(char _data);
+	Node(char _data, size_t _frequency);
 	~Node();
 
 	const size_t getFrequency() { return frequency; }
 	char getData() { return data; }
 
-	const bool operator<(const Node& _comparison) const { return this->frequency < _comparison.frequency; }
+	const bool operator>(const Node& _comparison) const { return this->frequency > _comparison.frequency; }
 
 private:
 	char data = NULL;

@@ -1,10 +1,10 @@
 #include <iostream>
 #include "Node.h"
 
-Node::Node(char _data)
+Node::Node(char _data, size_t _frequency)
 {
 	data = _data;
-	frequency = 1;
+	frequency = _frequency;
 	left = nullptr;
 	right = nullptr;
 }
